@@ -1,5 +1,305 @@
 {
   "versions": {
+    "cb77ae89": {
+      "version": "21.8",
+      "offsets": {
+        "safechecks": "0x7B5C0",
+        "faststartup": "0x30B40",
+        "DB_LoadXZoneFromGfxConfig": "0x359B0",
+        "CG_Respawn": "0x37730",
+        "ScreenshotRequest": "0xAA960",
+        "menufps": "0x5F371",
+        "mousefix": null,
+        "hwnd": "0x4410820",
+        "iwd_flag_localized": "0x2DFA6",
+        "iwd_flag_lang": "0x2DFAD",
+        "iwd_restriction": "0x30A5D",
+        "ss_switch": "0xAA97B",
+        "steam_auth_a": "0x10212",
+        "steam_auth_b": "0x1021B",
+        "BG_WeaponNames": "0x3E3A40",
+        "Cmd_AddCommand_fnc": "0x5C810",
+        "Sys_CreateConsole": "0x780E0",
+        "Cvar_RegisterBool": "0x59A40",
+        "Cvar_RegisterEnum": "0x594A0",
+        "Cvar_RegisterString": "0x597C0",
+        "Cvar_RegisterFloat": "0x59CC0",
+        "Cvar_RegisterVec4": "0x5A730",
+        "Cvar_RegisterInt": "0x59F70",
+        "FS_AddSingleIwdFileForGameDirectory": "0x2DF50",
+        "DB_BuildOSPath": "0x2CF10",
+        "CG_DrawUpperRightDebugInfo": "0x392B0"
+      },
+      "patches": {
+        "safechecks": [
+          {
+            "address": "0x7B5C0",
+            "bytes": "C3"
+          }
+        ],
+        "faststartup": [
+          {
+            "address": "0x30B40",
+            "bytes": "C3"
+          }
+        ],
+        "menufps": [
+          {
+            "address": "0x5F371",
+            "bytes": "90 90"
+          }
+        ],
+        "iwd_restriction": [
+          {
+            "address": "0x30A5D",
+            "bytes": "EB"
+          }
+        ],
+        "ss_switch": [
+          {
+            "address": "0xAA97B",
+            "bytes": "EB"
+          }
+        ],
+        "steam_auth_a": [
+          {
+            "address": "0x10212",
+            "bytes": "90 90"
+          }
+        ],
+        "steam_auth_b": [
+          {
+            "address": "0x1021B",
+            "bytes": "E9 C0 01 00 00 90"
+          }
+        ]
+      }
+    },
+    "995e120b": {
+      "version": "21.7",
+      "offsets": {
+        "safechecks": "0x7B5D0",
+        "faststartup": "0x30B40",
+        "DB_LoadXZoneFromGfxConfig": "0x359B0",
+        "CG_Respawn": "0x37730",
+        "ScreenshotRequest": "0xAA970",
+        "menufps": "0x5F381",
+        "mousefix": null,
+        "hwnd": "0x4410820",
+        "iwd_flag_localized": "0x2DFA6",
+        "iwd_flag_lang": "0x2DFAD",
+        "iwd_restriction": "0x30A5D",
+        "ss_switch": "0xAA98B",
+        "steam_auth_a": "0x10212",
+        "steam_auth_b": "0x1021B",
+        "BG_WeaponNames": "0x3E3A40",
+        "Cmd_AddCommand_fnc": "0x5C820",
+        "Sys_CreateConsole": "0x780F0",
+        "Cvar_RegisterBool": "0x59A50",
+        "Cvar_RegisterEnum": "0x594B0",
+        "Cvar_RegisterString": "0x597D0",
+        "Cvar_RegisterFloat": "0x59CD0",
+        "Cvar_RegisterVec4": "0x5A740",
+        "Cvar_RegisterInt": "0x59F80",
+        "FS_AddSingleIwdFileForGameDirectory": "0x2DF50",
+        "DB_BuildOSPath": "0x2CF10",
+        "CG_DrawUpperRightDebugInfo": "0x392B0"
+      },
+      "patches": {
+        "safechecks": [
+          {
+            "address": "0x7B5D0",
+            "bytes": "C3"
+          }
+        ],
+        "faststartup": [
+          {
+            "address": "0x30B40",
+            "bytes": "C3"
+          }
+        ],
+        "menufps": [
+          {
+            "address": "0x5F381",
+            "bytes": "90 90"
+          }
+        ],
+        "iwd_restriction": [
+          {
+            "address": "0x30A5D",
+            "bytes": "EB"
+          }
+        ],
+        "ss_switch": [
+          {
+            "address": "0xAA98B",
+            "bytes": "EB"
+          }
+        ],
+        "steam_auth_a": [
+          {
+            "address": "0x10212",
+            "bytes": "90 90"
+          }
+        ],
+        "steam_auth_b": [
+          {
+            "address": "0x1021B",
+            "bytes": "E9 C0 01 00 00 90"
+          }
+        ]
+      }
+    },
+    "faaf5b46": {
+      "version": "21.6",
+      "offsets": {
+        "safechecks": "0x7B530",
+        "faststartup": "0x30B40",
+        "DB_LoadXZoneFromGfxConfig": "0x359B0",
+        "CG_Respawn": "0x37730",
+        "ScreenshotRequest": "0xAA8D0",
+        "menufps": "0x5F2E1",
+        "mousefix": null,
+        "hwnd": "0x4410820",
+        "iwd_flag_localized": "0x2DFA6",
+        "iwd_flag_lang": "0x2DFAD",
+        "iwd_restriction": "0x30A5D",
+        "ss_switch": "0xAA8EB",
+        "steam_auth_a": "0x10212",
+        "steam_auth_b": "0x1021B",
+        "BG_WeaponNames": "0x3E3A40",
+        "Cmd_AddCommand_fnc": "0x5C780",
+        "Sys_CreateConsole": "0x78050",
+        "Cvar_RegisterBool": "0x599B0",
+        "Cvar_RegisterEnum": "0x59410",
+        "Cvar_RegisterString": "0x59730",
+        "Cvar_RegisterFloat": "0x59C30",
+        "Cvar_RegisterVec4": "0x5A6A0",
+        "Cvar_RegisterInt": "0x59EE0",
+        "FS_AddSingleIwdFileForGameDirectory": "0x2DF50",
+        "DB_BuildOSPath": "0x2CF10",
+        "CG_DrawUpperRightDebugInfo": "0x392B0"
+      },
+      "patches": {
+        "safechecks": [
+          {
+            "address": "0x7B530",
+            "bytes": "C3"
+          }
+        ],
+        "faststartup": [
+          {
+            "address": "0x30B40",
+            "bytes": "C3"
+          }
+        ],
+        "menufps": [
+          {
+            "address": "0x5F2E1",
+            "bytes": "90 90"
+          }
+        ],
+        "iwd_restriction": [
+          {
+            "address": "0x30A5D",
+            "bytes": "EB"
+          }
+        ],
+        "ss_switch": [
+          {
+            "address": "0xAA8EB",
+            "bytes": "EB"
+          }
+        ],
+        "steam_auth_a": [
+          {
+            "address": "0x10212",
+            "bytes": "90 90"
+          }
+        ],
+        "steam_auth_b": [
+          {
+            "address": "0x1021B",
+            "bytes": "E9 C0 01 00 00 90"
+          }
+        ]
+      }
+    },
+    "718e7d54": {
+      "version": "21.5",
+      "offsets": {
+        "safechecks": "0x7B510",
+        "faststartup": "0x30B40",
+        "DB_LoadXZoneFromGfxConfig": "0x359B0",
+        "CG_Respawn": "0x37730",
+        "ScreenshotRequest": "0xAA8B0",
+        "menufps": "0x5F2E1",
+        "mousefix": null,
+        "hwnd": "0x4410820",
+        "iwd_flag_localized": "0x2DFA6",
+        "iwd_flag_lang": "0x2DFAD",
+        "iwd_restriction": "0x30A5D",
+        "ss_switch": "0xAA8CB",
+        "steam_auth_a": "0x10212",
+        "steam_auth_b": "0x1021B",
+        "BG_WeaponNames": "0x3E3A40",
+        "Cmd_AddCommand_fnc": "0x5C780",
+        "Sys_CreateConsole": "0x78030",
+        "Cvar_RegisterBool": "0x599B0",
+        "Cvar_RegisterEnum": "0x59410",
+        "Cvar_RegisterString": "0x59730",
+        "Cvar_RegisterFloat": "0x59C30",
+        "Cvar_RegisterVec4": "0x5A6A0",
+        "Cvar_RegisterInt": "0x59EE0",
+        "FS_AddSingleIwdFileForGameDirectory": "0x2DF50",
+        "DB_BuildOSPath": "0x2CF10",
+        "CG_DrawUpperRightDebugInfo": "0x392B0"
+      },
+      "patches": {
+        "safechecks": [
+          {
+            "address": "0x7B510",
+            "bytes": "C3"
+          }
+        ],
+        "faststartup": [
+          {
+            "address": "0x30B40",
+            "bytes": "C3"
+          }
+        ],
+        "menufps": [
+          {
+            "address": "0x5F2E1",
+            "bytes": "90 90"
+          }
+        ],
+        "iwd_restriction": [
+          {
+            "address": "0x30A5D",
+            "bytes": "EB"
+          }
+        ],
+        "ss_switch": [
+          {
+            "address": "0xAA8CB",
+            "bytes": "EB"
+          }
+        ],
+        "steam_auth_a": [
+          {
+            "address": "0x10212",
+            "bytes": "90 90"
+          }
+        ],
+        "steam_auth_b": [
+          {
+            "address": "0x1021B",
+            "bytes": "E9 C0 01 00 00 90"
+          }
+        ]
+      }
+    },
     "57f93656": {
       "version": "21.4",
       "offsets": {
