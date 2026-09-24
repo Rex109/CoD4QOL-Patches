@@ -46,7 +46,7 @@ CoD4QOL-Patches/
 ├── 📄 offsets.json        # ⚙️ generated — this is what CoD4QOL downloads
 ├── 🐍 scan.py             # the scanner (Python stdlib only)
 └── .github/workflows/
-    └── 🤖 update.yml
+    └── 🤖 update-offsets.yml
 ```
 
 ---
