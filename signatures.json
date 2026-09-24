@@ -1,0 +1,197 @@
+{
+  "safechecks": {
+    "patterns": [
+      {
+        "pattern": "55 B9 45 00 00 00 57 56 BE ?? ?? ?? ?? 53 81 EC 4C 01 00 00 8D 7C 24 2C"
+      }
+    ]
+  },
+  "faststartup": {
+    "patterns": [
+      {
+        "pattern": "57 B8 90 21 00 00 56 53 E8 ?? ?? ?? ?? BE ?? ?? ?? ?? B9 5D 00 00 00 29"
+      }
+    ]
+  },
+  "DB_LoadXZoneFromGfxConfig": {
+    "patterns": [
+      {
+        "pattern": "56 53 83 EC 74 A1 28 D1 C9 0C C7 44 24 20 02 00 00 00 89 44 24 1C A1 34"
+      }
+    ]
+  },
+  "CG_Respawn": {
+    "patterns": [
+      {
+        "pattern": "57 83 EC 18 A1 58 E3 74 00 C7 44 24 08 64 2F 00 00 83 C0 0C C7 04 24 74"
+      }
+    ]
+  },
+  "ScreenshotRequest": {
+    "patterns": [
+      {
+        "pattern": "53 81 EC 88 00 00 00 8B 9C 24 94 00 00 00 89 1D ?? ?? ?? ?? E8 ?? ?? ??"
+      }
+    ]
+  },
+  "menufps": {
+    "patterns": [
+      {
+        "pattern": "83 E3 EF 89 C2 83 C3 21 2B 15 28 C4 5E 0D 39 DA 72 26 83 3D 00 F9 C5 00 07 A3 28 C4",
+        "offset": 16
+      }
+    ]
+  },
+  "mousefix": {
+    "optional": true,
+    "patterns": [
+      {
+        "pattern": "8B BC 24 9C 00 00 00 FF 15 ?? ?? ?? ?? 83 EC 04 39 1D",
+        "offset": 7
+      }
+    ]
+  },
+  "hwnd": {
+    "patterns": [
+      {
+        "pattern": "C7 04 24 00 00 00 00 FF D3 A3 ?? ?? ?? ?? 83 EC 30 85 C0 0F 84",
+        "offset": 10,
+        "type": "deref"
+      }
+    ]
+  },
+  "iwd_flag_localized": {
+    "patterns": [
+      {
+        "pattern": "8B 15 DC C4 5E 0D 89 58 04 C7 40 0C 00 00 00 00 C7 40 18 00 00 00 00 89 10 A3 DC C4 5E 0D",
+        "offset": 12
+      }
+    ]
+  },
+  "iwd_flag_lang": {
+    "patterns": [
+      {
+        "pattern": "8B 15 DC C4 5E 0D 89 58 04 C7 40 0C 00 00 00 00 C7 40 18 00 00 00 00 89 10 A3 DC C4 5E 0D",
+        "offset": 19
+      }
+    ]
+  },
+  "iwd_restriction": {
+    "patterns": [
+      {
+        "pattern": "85 C9 0F 84 ?? ?? ?? ?? E8 ?? ?? ?? ?? 85 C0 75 DE 8B 45 04 E9",
+        "offset": 15
+      }
+    ]
+  },
+  "ss_switch": {
+    "patterns": [
+      {
+        "pattern": "53 81 EC 88 00 00 00 8B 9C 24 94 00 00 00 89 1D ?? ?? ?? ?? E8 ?? ?? ?? ?? 85 C0 74 13",
+        "offset": 27
+      }
+    ]
+  },
+  "steam_auth_a": {
+    "patterns": [
+      {
+        "pattern": "E8 ?? ?? ?? ?? 85 C0 75 0D E8 ?? ?? ?? ?? 85 C0 0F 84 ?? ?? ?? ?? C7 44 24 04 ?? ?? ?? ?? 89 1C",
+        "offset": 7
+      }
+    ]
+  },
+  "steam_auth_b": {
+    "patterns": [
+      {
+        "pattern": "E8 ?? ?? ?? ?? 85 C0 75 0D E8 ?? ?? ?? ?? 85 C0 0F 84 BF 01 00 00 C7 44 24 04 ?? ?? ?? ?? 89 1C",
+        "offset": 16
+      }
+    ]
+  },
+  "BG_WeaponNames": {
+    "patterns": [
+      {
+        "pattern": "83 EC 2C C7 44 24 04 ?? ?? ?? ?? C7 04 24 8C 2D 40 00 E8",
+        "offset": 7,
+        "type": "deref"
+      }
+    ]
+  },
+  "Cmd_AddCommand_fnc": {
+    "patterns": [
+      {
+        "pattern": "55 57 56 53 83 EC 2C 8B 3D ?? ?? ?? ?? 8B 74 24 40 8B 1F 85 DB 75 0F EB 4F ?? ?? ?? ?? ?? ?? ?? 8B 1B 85 DB 74 42 8B 43 04 89 34 24 89 44 24 04 E8 ?? ?? ?? ?? 85 C0 75 E7 8B 44 24 44 85 C0 74 7E 89 74 24 08 C7 44 24 04 ?? ?? ?? ?? C7 04 24 10 00 00 00 E8 ?? ?? ?? ?? 83 C4 2C 5B 5E 5F 5D C3 ?? ?? ?? ?? ?? ?? ?? 89 34 24 E8 ?? ?? ?? ?? 89 C5 8D 40 15 89 04 24 E8 ?? ?? ?? ?? 89 C3 85 C0 74 3C"
+      }
+    ]
+  },
+  "Sys_CreateConsole": {
+    "patterns": [
+      {
+        "pattern": "55 BA ?? ?? ?? ?? 31 C0 B9 0A 00 00 00 57 89 D7 56 53 83 EC 6C F3 AB C7"
+      }
+    ]
+  },
+  "Cvar_RegisterBool": {
+    "patterns": [
+      {
+        "pattern": "55 57 56 53 83 EC 5C 8B 7C 24 70 8B 5C 24 74 8B 6C 24 78 89 3C 24 88 5C"
+      }
+    ]
+  },
+  "Cvar_RegisterEnum": {
+    "patterns": [
+      {
+        "pattern": "56 31 C0 53 83 EC 34 8B 54 24 44 8B 4C 24 48 8B 5C 24 4C 8B 32 85 F6 74"
+      }
+    ]
+  },
+  "Cvar_RegisterString": {
+    "patterns": [
+      {
+        "pattern": "55 57 56 53 83 EC 5C 8B 74 24 70 8B 6C 24 74 8B 7C 24 78 89 34 24 89 6C"
+      }
+    ]
+  },
+  "Cvar_RegisterFloat": {
+    "patterns": [
+      {
+        "pattern": "55 57 56 53 83 EC 6C 8B 9C 24 80 00 00 00 D9 84 24 84 00 00 00 8B B4 24"
+      }
+    ]
+  },
+  "Cvar_RegisterVec4": {
+    "patterns": [
+      {
+        "pattern": "55 57 56 53 83 EC 5C 8B 5C 24 70 8B B4 24 8C 00 00 00 89 1C 24 E8 ?? ??"
+      }
+    ]
+  },
+  "Cvar_RegisterInt": {
+    "patterns": [
+      {
+        "pattern": "55 57 56 53 83 EC 5C 8B 74 24 70 8B 6C 24 74 8B BC 24 80 00 00 00 89 34"
+      }
+    ]
+  },
+  "FS_AddSingleIwdFileForGameDirectory": {
+    "patterns": [
+      {
+        "pattern": "53 83 EC 18 8B 44 24 24 89 44 24 04 8B 44 24 20 89 04 24 E8 ?? ?? ?? ??"
+      }
+    ]
+  },
+  "DB_BuildOSPath": {
+    "patterns": [
+      {
+        "pattern": "57 56 53 83 EC 60 8B 44 24 74 8B 74 24 70 8B 5C 24 7C 83 F8 01 0F 84 ??"
+      }
+    ]
+  },
+  "CG_DrawUpperRightDebugInfo": {
+    "patterns": [
+      {
+        "pattern": "83 EC 2C A1 B8 63 8C 00 C7 05 28 F3 C9 0C 00 00 00 00 D9 40 10 A1 ?? ??"
+      }
+    ]
+  }
+}

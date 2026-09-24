@@ -1,0 +1,19 @@
+[
+  { "patch": "safechecks",      "offset": "safechecks",      "versions": "*",          "bytes": "C3" },
+  { "patch": "faststartup",     "offset": "faststartup",     "versions": "*",          "bytes": "C3" },
+  { "patch": "menufps",         "offset": "menufps",         "versions": "*",          "bytes": "90 90" },
+
+  { "patch": "mousefix",        "offset": "mousefix",        "versions": "21.1",       "bytes": "90 90 90 90 90" },
+  { "patch": "mousefix",        "offset": "mousefix",        "versions": "21.2..21.3", "bytes": "90 90 90 90 90 90 90 90 90" },
+
+  { "patch": "iwd_restriction", "offset": "iwd_restriction", "versions": "21.1",       "bytes": "E9 88 00 00 00 90" },
+  { "patch": "iwd_restriction", "offset": "iwd_restriction", "versions": ">=21.2",     "bytes": "EB" },
+  { "patch": "iwd_restriction", "offset": "iwd_restriction", "versions": "21.2",       "bytes": "90 90 90 90 90 90", "at": -13 },
+
+  { "patch": "ss_switch",       "offset": "ss_switch",       "versions": "*",          "bytes": "EB" },
+
+  { "patch": "steam_auth_a",    "offset": "steam_auth_a",    "versions": "21.1",       "bytes": "90 90 90 90 90 90" },
+  { "patch": "steam_auth_a",    "offset": "steam_auth_a",    "versions": ">=21.2",     "bytes": "90 90" },
+  { "patch": "steam_auth_b",    "offset": "steam_auth_b",    "versions": "21.1",       "bytes": "90 90 90 90 90 90" },
+  { "patch": "steam_auth_b",    "offset": "steam_auth_b",    "versions": ">=21.2",     "bytes": "E9 C0 01 00 00 90" }
+]
