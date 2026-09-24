@@ -156,4 +156,4 @@ No dependencies, just Python 3. 🐍
 
 ## 🛟 Offline fallback
 
-Every CoD4QOL release **bundles the latest `offsets.json`**. If a player is offline or GitHub is down, CoD4QOL falls back to the embedded copy. 🔌
+Every CoD4QOL release **bundles the latest `offsets.json`**. If a player is offline or GitHub is down, CoD4QOL falls back to the embedded copy.
