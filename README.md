@@ -1,11 +1,11 @@
 <div align="center">
 
-# 🎯 CoD4QOL-Patches
+# 💊 CoD4QOL-Patches
 
 **Automatic offsets & patches for [CoD4QOL](https://github.com/Rex109/CoD4QOL) — no mod update required.**
 
 [![Update offsets](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update-offsets.yml/badge.svg)](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update.yml)
-![CoD4X](https://img.shields.io/badge/CoD4X-21.3%2B-orange)
+![CoD4X](https://img.shields.io/badge/CoD4X-21.1%2B-orange)
 ![Python](https://img.shields.io/badge/python-stdlib%20only-blue)
 
 </div>
