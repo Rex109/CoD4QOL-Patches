@@ -2,15 +2,13 @@
 
 # 💊 CoD4QOL-Patches
 
-**Automatic offsets & patches for [CoD4QOL](https://github.com/Rex109/CoD4QOL) — no mod update required.**
+**Automatic offsets & patches for [CoD4QOL](https://github.com/Rex109/CoD4QOL)**
 
 [![Update offsets](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update-offsets.yml/badge.svg)](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update.yml)
 ![CoD4X](https://img.shields.io/badge/CoD4X-21.1%2B-orange)
 ![Python](https://img.shields.io/badge/python-stdlib%20only-blue)
 
 </div>
-
----
 
 ## ✨ What is this?
 
@@ -20,7 +18,7 @@ This repo **pattern-scans every CoD4X release automatically** and publishes a si
 ➡️ Players just open the game. New CoD4X version? CoD4QOL picks up the new offsets on its own.
 
 ```
-📦 CoD4X release  ──►  🤖 GitHub Action  ──►  🔍 pattern scan  ──►  📄 offsets.json  ──►  🎮 CoD4QOL
+📦 CoD4X release  ──►  🤖 GH Action  ──►  🔍 Pattern Scan  ──►  📄 offsets.json  ──►  🎮 CoD4QOL
 ```
 
 ---
