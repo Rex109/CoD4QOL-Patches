@@ -172,10 +172,11 @@ Every local run scans them next to the GitHub releases, so **all** versions get 
 
 ### ➕ Adding a new offset
 
-1. Add it to `signatures.json` (use `"optional": true` if it only exists in newer versions)
-2. If it needs a patch, add it to `patches.json`
-3. `git pull`, then `python scan.py`
-4. Commit `signatures.json` + `offsets.json` (+ `patches.json`) together and push
+1. `git pull` first: the workflow commits `offsets.json` by itself whenever a new CoD4X release comes out
+2. Add it to `signatures.json` (use `"optional": true` if it only exists in newer versions)
+3. If it needs a patch, add it to `patches.json`
+4. `python scan.py`
+5. Commit `signatures.json` + `offsets.json` (+ `patches.json`) together and push
 
 The workflow then finds nothing missing and does nothing.
 
