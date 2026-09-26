@@ -4,7 +4,7 @@
 
 **Automatic offsets & patches for [CoD4QOL](https://github.com/Rex109/CoD4QOL)**
 
-[![Update offsets](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update-offsets.yml/badge.svg)](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update.yml)
+[![Update offsets](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update-offsets.yml/badge.svg)](https://github.com/Rex109/CoD4QOL-Patches/actions/workflows/update-offsets.yml)
 ![CoD4X](https://img.shields.io/badge/CoD4X-21.1%2B-orange)
 ![Python](https://img.shields.io/badge/python-stdlib%20only-blue)
 
@@ -45,6 +45,7 @@ CoD4QOL-Patches/
 ├── 🩹 patches.json        # what to write, on which offset, for which versions
 ├── 📄 offsets.json        # ⚙️ generated — this is what CoD4QOL downloads
 ├── 🐍 scan.py             # the scanner (Python stdlib only)
+├── 📂 local_dlls/         # your non-GitHub builds
 └── .github/workflows/
     └── 🤖 update-offsets.yml
 ```
@@ -144,13 +145,42 @@ https://raw.githubusercontent.com/Rex109/CoD4QOL-Patches/main/offsets.json
 
 ## 🖥️ Running locally
 
+The workflow only takes care of **new CoD4X releases**. Anything you change yourself (a new offset, a new pattern) is recomputed locally with one command, then committed together with `offsets.json`.
+
 ```bash
-python scan.py                                   # scan all GitHub releases
-python scan.py --rescan                          # verify cached offsets, write nothing
-python scan.py --offline --dll path/to/cod4x_021.dll=21.4
+python scan.py                          # GitHub releases + local_dlls/, fills in missing offsets
+python scan.py --recompute menufps      # scan an offset again on every version, even if stored
+python scan.py --recompute all          # scan everything again on every version
+python scan.py --rescan                 # verify stored offsets, write nothing
+python scan.py --offline                # skip GitHub, only local_dlls/
 ```
 
 No dependencies, just Python 3. 🐍
+
+### 📂 `local_dlls/`
+
+Builds that aren't on GitHub (**21.1**, **21.2**, the **21.3 installer**) go in `local_dlls/` (git-ignored), named after their version:
+
+```
+local_dlls/
+├── 21.1.dll
+├── 21.2.dll
+└── 21.3_installer.dll      # anything after "_" is ignored → 21.3
+```
+
+Every local run scans them next to the GitHub releases, so **all** versions get new offsets at once.
+
+### ➕ Adding a new offset
+
+1. Add it to `signatures.json` (use `"optional": true` if it only exists in newer versions)
+2. If it needs a patch, add it to `patches.json`
+3. `git pull`, then `python scan.py`
+4. Commit `signatures.json` + `offsets.json` (+ `patches.json`) together and push
+
+The workflow then finds nothing missing and does nothing.
+
+> [!NOTE]
+> `--recompute` never throws away a stored value. If no pattern matches an old build anymore, it keeps the stored value and prints a warning; if a pattern finds a **different** value, it's replaced and printed as `CHANGED`.
 
 ---
 

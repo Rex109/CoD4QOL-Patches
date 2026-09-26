@@ -2,10 +2,14 @@
 Scans CoD4X client DLLs for the offsets listed in signatures.json and
 writes offsets.json (offsets + resolved patches per CoD4X build).
 
-  python scan.py                      scan every GitHub release >= MIN_VERSION
+  python scan.py                      scan every GitHub release >= MIN_VERSION and every
+                                      DLL in local_dlls/, filling in missing offsets
+  python scan.py --recompute menufps  scan menufps again on every version, even if stored
+  python scan.py --recompute all      scan every offset again on every version
   python scan.py --rescan             re-check cached offsets, write nothing
-  python scan.py --offline --dll path/cod4x_021.dll=21.4
-                                      scan a local DLL only (no network)
+  python scan.py --offline            skip GitHub, only scan local_dlls/ (and --dll)
+  python scan.py --dll path/cod4x_021.dll=21.4
+                                      also scan one extra DLL
 
 Only standard library. Exit code 1 if anything needs attention.
 """
@@ -27,6 +31,9 @@ SIGNATURES = os.path.join(HERE, "signatures.json")
 PATCHES = os.path.join(HERE, "patches.json")
 OFFSETS = os.path.join(HERE, "offsets.json")
 DLL_DIR = os.path.join(HERE, "dlls")
+# DLLs that aren't on GitHub (21.1, 21.2, installer builds...). Name them <version>.dll,
+# anything after an underscore is ignored: 21.3_installer.dll -> 21.3
+LOCAL_DLL_DIR = os.path.join(HERE, "local_dlls")
 
 
 # ---------------------------------------------------------------- PE
@@ -201,6 +208,17 @@ def github_dlls():
     return out
 
 
+def local_dlls():
+    """[(version, path)] for every DLL in local_dlls/."""
+    if not os.path.isdir(LOCAL_DLL_DIR):
+        return []
+    out = []
+    for name in sorted(os.listdir(LOCAL_DLL_DIR)):
+        if name.lower().endswith(".dll"):
+            out.append((os.path.splitext(name)[0].split("_")[0], os.path.join(LOCAL_DLL_DIR, name)))
+    return out
+
+
 # ---------------------------------------------------------------- main
 
 def load_json(path, default):
@@ -214,6 +232,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--rescan", action="store_true",
                     help="re-resolve cached offsets and fail if any would change; writes nothing")
+    ap.add_argument("--recompute", nargs="+", default=[], metavar="OFFSET",
+                    help="scan these offsets again even if already stored ('all' for every offset)")
     ap.add_argument("--offline", action="store_true", help="don't query GitHub")
     ap.add_argument("--dll", action="append", default=[], metavar="PATH=VERSION",
                     help="also scan a local DLL")
@@ -224,10 +244,16 @@ def main():
     db = load_json(OFFSETS, {"versions": {}})
     versions = db.setdefault("versions", {})
 
+    recompute = set(sigs) if "all" in args.recompute else set(args.recompute)
+    unknown = recompute - set(sigs)
+    if unknown:
+        sys.exit("--recompute: unknown offset(s) %s" % ", ".join(sorted(unknown)))
+
     errors, warnings = [], []
 
     # ---- sources
     sources = [] if args.offline else github_dlls()
+    sources += local_dlls()
     for item in args.dll:
         path, _, version = item.partition("=")
         if not version:
@@ -235,10 +261,14 @@ def main():
         sources.append((version, path))
 
     # ---- scan
+    scanned = set()
     for version, path in sources:
         with open(path, "rb") as f:
             data = f.read()
         crc = "%08x" % (zlib.crc32(data) & 0xFFFFFFFF)
+        if crc in scanned:
+            continue
+        scanned.add(crc)
         pe = PE(data)
         entry = versions.setdefault(crc, {"version": version, "offsets": {}, "patches": {}})
         offs = entry.setdefault("offsets", {})
@@ -246,10 +276,22 @@ def main():
 
         for oid, sig in sigs.items():
             cached = offs.get(oid)
-            if cached is not None and not args.rescan:
+            if cached is not None and not args.rescan and oid not in recompute:
                 continue
 
             rva, idx = resolve(pe, sig)
+
+            if oid in recompute and cached is not None and not args.rescan:
+                if rva is None:
+                    # Hand-verified values on old builds may not match today's patterns
+                    warnings.append("%s %s: no pattern matches anymore, kept stored %s"
+                                    % (entry["version"], oid, cached))
+                    print("  %-38s %s  (kept, no pattern matches)" % (oid, cached))
+                    continue
+                if rva != int(cached, 16):
+                    print("  %-38s %s -> 0x%X  (CHANGED, pattern #%d)" % (oid, cached, rva, idx))
+                    offs[oid] = "0x%X" % rva
+                    continue
 
             if args.rescan:
                 if cached is not None and rva is not None and rva != int(cached, 16):
