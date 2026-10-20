@@ -121,6 +121,7 @@ https://raw.githubusercontent.com/Rex109/CoD4QOL-Patches/main/offsets.json
 
 ```json
 {
+  "revision": 12,
   "versions": {
     "57f93656": {
       "version": "21.4",
@@ -137,6 +138,7 @@ https://raw.githubusercontent.com/Rex109/CoD4QOL-Patches/main/offsets.json
 }
 ```
 
+- 🔢 `revision` goes up by 1 whenever the content changes (new version, offset or patch) and never otherwise. CoD4QOL compares the revision of its saved copy with the one bundled in the build, and uses the higher one
 - 🔑 Keyed by the **CRC32** of `cod4x_021.dll`
 - 📍 Addresses are **relative** to the CoD4X DLL base (`cod4x_entry + address`)
 - 🚫 `null` = not needed on this version, so CoD4QOL skips it

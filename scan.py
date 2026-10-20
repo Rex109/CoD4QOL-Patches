@@ -14,6 +14,7 @@ writes offsets.json (offsets + resolved patches per CoD4X build).
 Only standard library. Exit code 1 if anything needs attention.
 """
 import argparse
+import copy
 import json
 import os
 import re
@@ -243,6 +244,7 @@ def main():
     patches = load_json(PATCHES, [])
     db = load_json(OFFSETS, {"versions": {}})
     versions = db.setdefault("versions", {})
+    old_versions = copy.deepcopy(versions)
 
     recompute = set(sigs) if "all" in args.recompute else set(args.recompute)
     unknown = recompute - set(sigs)
@@ -353,7 +355,7 @@ def main():
     def sort_offsets(o):
         return {k: o[k] for k in sorted(o, key=lambda k: (order.index(k) if k in order else len(order), k))}
 
-    result = {"versions": {}}
+    result = {"revision": 0, "versions": {}}
     for crc in sorted(versions, key=lambda c: (parse_version(versions[c]["version"]) or (), c), reverse=True):
         e = versions[crc]
         result["versions"][crc] = {
@@ -361,6 +363,13 @@ def main():
             "offsets": sort_offsets(e.get("offsets", {})),
             "patches": e.get("patches", {}),
         }
+    # Clients use the higher revision of their saved and bundled copy, so only bump it when the content really changed
+    old_revision = db.get("revision")
+    changed = json.loads(json.dumps(result["versions"])) != old_versions
+    result["revision"] = 1 if old_revision is None else old_revision + (1 if changed else 0)
+    if changed:
+        print("\noffsets.json changed, revision %s -> %d" % (old_revision, result["revision"]))
+
     with open(OFFSETS, "w", encoding="utf-8", newline="\n") as f:
         json.dump(result, f, indent=2)
         f.write("\n")
